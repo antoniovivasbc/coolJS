@@ -20,7 +20,7 @@ body{
 .project{
     display: flex;
     align-items: flex-start;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
     transition: .4s;
 }
