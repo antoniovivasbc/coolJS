@@ -31,20 +31,32 @@ body{
 .project-info{
     display: inline-block;
 }
-.btn{
+.project-btn{
     vertical-align: middle;
     margin-left: 300px;
+}
+.task-modal{
+    max-height: 70vh;
+    overflow-y: scroll;
 }
 hr{
     width: 95%;
     margin-left: auto!important;
     margin-right: auto!important;
 }
+.complete-btn{
+    margin-right: 10px;
+}
 @media screen and (max-width: 1200px) {
     .container{
         justify-content: center;
     }
-    .btn{
+    .project-btn{
         margin-left: 25vw;
+    }
+}
+@media screen and (max-width: 450px) {
+    .project-btn{
+        margin-left: 10vw;
     }
 }
