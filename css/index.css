@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    overflow-x: hidden;
+}
+.logo{
+    display: block;
+    margin: auto;
+    height: 70px;
+    margin-top: 50px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+    flex-wrap: wrap;
+}
+.project{
+    display: flex;
+    align-items: flex-start;
+    padding: 5px;
+    border-radius: 5px;
+    transition: .4s;
+}
+.project:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+.project-info{
+    display: inline-block;
+}
+.btn{
+    vertical-align: middle;
+    margin-left: 300px;
+}
+hr{
+    width: 95%;
+    margin-left: auto!important;
+    margin-right: auto!important;
+}
+@media screen and (max-width: 1200px) {
+    .container{
+        justify-content: center;
+    }
+    .btn{
+        margin-left: 25vw;
+    }
+}
