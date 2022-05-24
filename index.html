@@ -38,24 +38,24 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Deadline</th>
-                        <th scope="col">Action</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Deadline</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody id="task-tbody">
                         <tr>
-                        <th>1</th>
-                        <td >Task 1</td>
-                        <td>Tomorrow</td>
-                        <td><button class="btn btn-success complete-btn">Complete</button><button class="btn btn-danger">Delete</button></td>
+                            <th>1</th>
+                            <td >Task 1</td>
+                            <td>2022-05-25</td>
+                            <td><button class="btn btn-success complete-btn">Complete</button><button class="btn btn-danger delete-btn">Delete</button><button class="btn btn-info" style="color: white;">Edit</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">New task</button>
+                <button type="button" class="btn btn-primary" id="new-task">New task</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
             </div>
@@ -72,12 +72,15 @@
                 <form id="task-form" class="form-inactive">
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Task name</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="text" class="form-control" id="task-name" required aria-describedby="">
+                      <label for="exampleInputEmail1" class="form-label">Deadline</label>
+                      <input type="date" class="form-control" id="deadline" required id="" aria-describedby="">
                     </div>
                   </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="task-form" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Submit</button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Back</button>
+                <button type="submit" id="task-submit" form="task-form" class="btn btn-primary" >Submit</button>
             </div>
             </div>
         </div>

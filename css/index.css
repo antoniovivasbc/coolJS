@@ -44,7 +44,7 @@ hr{
     margin-left: auto!important;
     margin-right: auto!important;
 }
-.complete-btn{
+.complete-btn, .delete-btn{
     margin-right: 10px;
 }
 @media screen and (max-width: 1200px) {
