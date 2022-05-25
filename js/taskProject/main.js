@@ -43,12 +43,13 @@ $('#task-form').submit(function(){
                 "<th>"+index+"</th>"+
                 "<td >"+taskName+"</td>"+
                 "<td>"+deadline+"</td>"+
-                "<td><button  draggable = 'false' class='btn btn-success complete-btn'><img src='img/verifica.png' alt=''></button><button draggable = 'false' class='btn btn-danger delete-btn'><img src='img/lata-de-lixo.png' alt=''></button><button draggable = 'false' class='btn btn-info edit-btn' style='color: white;'><img src='img/editar.png' alt=''></button></td>"+
+                "<td><button class='btn btn-success complete-btn'><img src='img/verifica.png' alt=''></button><button class='btn btn-danger delete-btn'><img src='img/lata-de-lixo.png' alt=''></button><button class='btn btn-info edit-btn' style='color: white;'><img src='img/editar.png' alt=''></button></td>"+
             "</tr>"
         );
         completeTask();
         deleteTask();
         editTask();
+        addEvents();
     }
 })
 //Task actions
@@ -60,7 +61,6 @@ function completeTask(){
             $(this).find('th:first').text(index + 1);
         });
     })
-
 }
 function deleteTask(){
     $('#task-tbody tr:last-child .delete-btn').on('click', function(){
@@ -94,19 +94,18 @@ completeTask();
 deleteTask();
 editTask();
 //Drag and drop
-function dragStart (event){
-    taskOnDrag = $(event.target);
+function dragStart (){
+    taskOnDrag = $(this);
 }
 function dragOver(event){
-    taskUnder = $(event.target.parentNode);
+    taskUnder = $(this);
     event.preventDefault();
 }
-tBody.on('dragstart', dragStart);
-tBody.on('dragover', dragOver);
-tBody.on('drop', function drop (){
-    var index1 = taskOnDrag.children().eq(0);
-    var index2 = taskUnder.children().eq(0);
-    if(index1.text() < index2.text()){
+function drop (){
+    var index1 = taskOnDrag.children().eq(0).text();
+    var index2 = taskUnder.children().eq(0).text();
+    console.log(index1, index2)
+    if(index1 < index2){
         $(taskOnDrag).insertAfter(taskUnder);
     }else{
         $(taskOnDrag).insertBefore(taskUnder);
@@ -114,5 +113,17 @@ tBody.on('drop', function drop (){
     $('#task-tbody tr').each(function (index) {
         $(this).find('th:first').text(index + 1);
     });
-});
-
+}
+function addEvents (){
+    tBody.children().each(function(){
+        $(this).off('dragstart', dragStart);
+        $(this).off('dragover', dragOver);
+        $(this).off('drop', drop);
+        $(this).on('dragstart', dragStart);
+        $(this).on('dragover', dragOver);
+        $(this).on('drop', drop);
+    });
+}
+// tBody.on('dragover', function(event){
+//     event.preventDefault()
+// })
