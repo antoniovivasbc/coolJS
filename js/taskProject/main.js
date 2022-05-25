@@ -1,22 +1,30 @@
+var inputTaskName = $('#task-name');
+var inputDeadline = $('#deadline');
+var modalTasks = $('#exampleModal');
+var modalCreateTask = $('#exampleModal2');
 $("#search-task").on("keyup", function(){
     var value = $(this).val().toLowerCase();
-    $("#task-tbody tr").children().eq(1).filter(function(){
-        $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    $("#task-tbody tr").each(function(){
+        $(this).children().eq(1).filter(function(){
+            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1);
+        })
     })
 })
 //New task create
 $('#new-task').on('click', function(){
-    $('#exampleModal').modal('hide');
-    $('#exampleModal2').modal('show');
-    $('#task-name').attr('data-index', '0');
+    modalTasks.modal('hide');
+    modalCreateTask.modal('show');
+    inputTaskName.attr('data-index', '0');
+    inputTaskName.val('');
+    inputDeadline.val('');
 })
 //Form submit (new task or edit task)
 $('#task-form').submit(function(){
-    $('#exampleModal').modal('show');
-    $('#exampleModal2').modal('hide');
-    index = $('#task-name').attr('data-index');
-    taskName = $('#task-name').val();
-    deadline = $('#deadline').val();
+    modalTasks.modal('show');
+    modalCreateTask.modal('hide');
+    index = inputTaskName.attr('data-index');
+    taskName = inputTaskName.val();
+    deadline = inputDeadline.val();
     if(index > 0){
         //Edit
         var taskRow = $('#task-tbody').children().eq(index - 1);
@@ -58,17 +66,17 @@ function deleteTask(){
     });
 }
 function editTask(){
-    $('.edit-btn').each(function(){
+    $('.edit-btn').each(function(i){
         $(this).on('click', function(){
-            $('#exampleModal').modal('hide');
-            $('#exampleModal2').modal('show');
+            modalTasks.modal('hide');
+            modalCreateTask.modal('show');
             $('#exampleModalLabel2').text('Edit task');
-            var index = $('#task-tbody tr').children().eq(0).text();
-            var taskName = $('#task-tbody tr').children().eq(1).text();
-            var deadline = $('#task-tbody tr').children().eq(2).text();
-            $('#task-name').val(taskName);
-            $('#deadline').val(deadline);
-            $('#task-name').attr('data-index', index);
+            var index = $('#task-tbody tr').eq(i).children().eq(0).text();
+            var taskName = $('#task-tbody tr').eq(i).children().eq(1).text();
+            var deadline = $('#task-tbody tr').eq(i).children().eq(2).text();
+            inputTaskName.val(taskName);
+            inputDeadline.val(deadline);
+            inputTaskName.attr('data-index', index);
         })
     });
 }
