@@ -122,6 +122,12 @@ function addEvents (){
         $(this).on('dragstart', dragStart);
         $(this).on('dragover', dragOver);
         $(this).on('drop', drop);
+        $(this).off('touchstart', dragStart);
+        $(this).off('touchmove', dragOver);
+        $(this).off('touchend', drop);
+        $(this).on('touchstart', dragStart);
+        $(this).on('touchmove', dragOver);
+        $(this).on('touchend', drop);
     });
 }
 // tBody.on('dragover', function(event){
