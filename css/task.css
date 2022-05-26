@@ -16,6 +16,7 @@
         width: 15px;
     }
     #task-tbody button{
+        vertical-align: middle!important;
         padding: 4px 8px 4px 8px!important;
     }
     .complete-btn, .delete-btn{

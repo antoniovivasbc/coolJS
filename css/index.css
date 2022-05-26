@@ -33,8 +33,12 @@ body{
 .project-info{
     display: inline-block;
 }
+.project-info p{
+    display: inline;
+}
 .project-btn{
     vertical-align: middle;
+    min-width: 100px;
 }
 hr{
     width: 95%;
@@ -59,5 +63,8 @@ hr{
     }
     .project p, .project-btn{
         font-size: 10px!important;
+    }
+    .project-btn{
+        min-width: 80px;
     }
 }
