@@ -97,7 +97,7 @@ editTask();
 function dragStart (){
     taskOnDrag = $(this);
 }
-function dragOver(event){
+function dragOver (event){
     taskUnder = $(this);
     event.preventDefault();
 }
@@ -114,21 +114,41 @@ function drop (){
         $(this).find('th:first').text(index + 1);
     });
 }
-function addEvents (){
+function firstTouch (){
+    taskOnDrag = $(this);
     tBody.children().each(function(){
-        $(this).off('dragstart', dragStart);
-        $(this).off('dragover', dragOver);
-        $(this).off('drop', drop);
-        $(this).on('dragstart', dragStart);
-        $(this).on('dragover', dragOver);
-        $(this).on('drop', drop);
-        $(this).off('touchstart', dragStart);
-        $(this).off('touchmove', dragOver);
-        $(this).off('touchend', drop);
-        $(this).on('touchstart', dragStart);
-        $(this).on('touchmove', dragOver);
-        $(this).on('touchend', drop);
+        if($(this) != taskOnDrag){
+            $(this).off('touchstart', secondTouch);
+            $(this).on('touchstart', secondTouch);
+        }
+        $(this).off('touchstart', firstTouch);
     });
+}
+function secondTouch (){
+    taskUnder = $(this);
+    drop ();
+    tBody.children().each(function (){
+        $(this).off('touchstart', secondTouch);
+        $(this).off('touchstart', firstTouch);
+        $(this).on('touchstart', firstTouch);
+    });
+}
+function addEvents (){
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        tBody.children().each(function(){
+            $(this).off('touchstart', firstTouch);
+            $(this).on('touchstart', firstTouch);
+        });
+    }else{
+        tBody.children().each(function(){
+            $(this).off('dragstart', dragStart);
+            $(this).off('dragover', dragOver);
+            $(this).off('drop', drop);
+            $(this).on('dragstart', dragStart);
+            $(this).on('dragover', dragOver);
+            $(this).on('drop', drop);
+        });
+    }
 }
 // tBody.on('dragover', function(event){
 //     event.preventDefault()
